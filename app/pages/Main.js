@@ -7,86 +7,58 @@ import {
     Image,
     View
 } from 'react-native';
-import Drawer from 'react-native-drawer'
+
+import TabNavigator from 'react-native-tab-navigator';
 import Util from '../commons/utils';
-import HeaderBar from '../commons/HeaderBar'
-import ControlPanel from './ControlPanel'
+import TodayContainer from '../containers/TodayContainer';
+import CityContainer from '../containers/CityContainer';
+
+const tabBarItems = [
+    { title: '今日', component: TodayContainer,icon: () => <Image style={{ width: 30, height: 30 }} source={require('../assets/imgs/today.png') }/>,iconSel: () => <Image style={{ width: 30, height: 30 }} source={require('../assets/imgs/today_sel.png') }/>,},
+    { title: '城市', component: CityContainer,icon: () => <Image style={{ width: 30, height: 30 }} source={require('../assets/imgs/city.png') }/>,iconSel: () => <Image style={{ width: 30, height: 30 }} source={require('../assets/imgs/city_sel.png') }/>,}
+]
 
 export default class Main extends Component {
-      // 构造
-      constructor(props) {
+    // 构造
+    constructor(props) {
         super(props);
         // 初始状态
         this.state = {
-            canShowLeftPanel:false
-        };
-      }
-    closeControlPanel = () => {
-        this._drawer.close()
-    };
-    openControlPanel = () => {
-        this._drawer.open()
-    };
-
-    render () {
-        return (
-            <Drawer
-                type="overlay"
-                ref={(ref) => this._drawer = ref}
-                content={<ControlPanel />}
-                tapToClose={true}
-                openDrawerOffset={0.2}
-                panCloseMask={0.2}
-                closedDrawerOffset={-3}
-                styles={drawerStyles}
-                tweenHandler={(ratio) => ({
-                    main: { opacity:(2-ratio)/2 }
-                })}
-            >
-                <Content action={this.openControlPanel}/>
-            </Drawer>
-        )
-    }
-
-}
-
-class Content extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            titleName:"上海",
-            leftIcon:"bars",
-            leftIconColor:"black"
+            selectedTab:tabBarItems[0].title
         };
     }
 
     render() {
         return (
-            <View style={styles.container}>
-                <HeaderBar
-                    leftIconColor={this.state.leftIconColor}
-                    titleView= {this.state.titleName}
-                    leftIcon={this.state.leftIcon}
-                />
-                <Text
-                    onPress={this.props.action}
-                >点击</Text>
-            </View>
-        );
+            <TabNavigator>
+                {
+                    tabBarItems.map((controller, i) => {
+                        let Component = controller.component;
+                        return (
+                            <TabNavigator.Item
+                                key= {i}
+                                selected={this.state.selectedTab === controller.title}
+                                title={controller.title}
+                                renderIcon={controller.icon}
+                                renderSelectedIcon={controller.iconSel}
+                                onPress={() => this.setState({ selectedTab: controller.title }) }>
+                                <Component navigator = {this.props.navigator} {...this.props}/>
+                            </TabNavigator.Item>
+                        )
+                    })
+                }
+            </TabNavigator >
+        )
     }
+
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex:1
+        flex: 1
     },
-    imgStyle:{
-        width:Util.size.width,
-        height:Util.size.height
+    imgStyle: {
+        width: Util.size.width,
+        height: Util.size.height
     }
 });
-
-const drawerStyles = {
-    drawer: { shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 3},
-    main: {paddingLeft: 3},
-}

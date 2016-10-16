@@ -8,13 +8,6 @@ import {
 import Launcher from  '../pages/Launch';
 
 export default class App extends React.Component {
-    closeControlPanel = () => {
-        this._drawer.close()
-    };
-    openControlPanel = () => {
-        this._drawer.open()
-    };
-
     render() {
         return (
             <View style={{ flex: 1 }}>

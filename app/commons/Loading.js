@@ -3,7 +3,7 @@ import {
     StyleSheet,
     View,
     Text,
-    ActivityIndicator,
+    ActivityIndicator
     } from 'react-native';
 
 import Util from './utils.js'
@@ -13,7 +13,7 @@ export default class Loading extends React.Component {
         return (
             <View style={styles.loading}>
                 <ActivityIndicator color="white"/>
-                <Text style={styles.loadingTitle}>º”‘ÿ÷–°≠°≠</Text>
+                <Text style={styles.loadingTitle}>Âä†ËΩΩ‰∏≠...</Text>
             </View>
         )
     }

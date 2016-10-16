@@ -1,16 +1,14 @@
-//主页actions
-export const FETCH_HOME_LIST = 'FETCH_HOME_LIST';
-export const RECEIVE_HOME_LIST = 'RECEIVE_HOME_LIST';
+// 获得当前定位
+export const FETCH_GEOLOCATION = 'FETCH_GEOLOCATION';
+//存储当前定位
+export const SAVE_GEOLOCATION = 'SAVE_GEOLOCATION';
+// 获得所有城市列表
+export const FETCH_CITY_LIST = 'FETCH_CITY_LIST';
+// 获取天气信息
+export const FETCH_WEATHER_INFO='FETCH_WEATHER_INFO';
+// 保存城市
+export const SAVE_CITY='SAVE_CITY';
+// 获取保存的城市
+export const GET_SAVED_CITY_LIST='GET_SAVED_CITY_LIST';
 
-// //详情页actions
-// export const FETCH_DETIAL_DATE = 'FETCH_DETIAL_DATE';
-// export const RECEIVE_DETIAL_DATE = 'RECEIVE_DETIAL_DATE';
 
-//分类页actions
-export const FETCH_CLASS_LIST = 'FETCH_CLASS_LIST';
-export const RECEIVE_CLASS_LIST = 'RECEIVE_CLASS_LIST';
-
-//分类详细页actions
-export const FETCH_CLASSDITAL_LIST = 'FETCH_CLASSDITAL_LIST';
-export const RECEIVE_CLASSDITAL_LIST = 'RECEIVE_CLASSDITAL_LIST';
-export const RESET_CLASSDITAL_STATE = 'RESET_CLASSDITAL_STATE';

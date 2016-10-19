@@ -32,7 +32,7 @@ export default class City extends Component {
     render() {
         return (
             <Drawer
-                type="overlay"
+                type="displace"
                 ref={(ref) => this._drawer = ref}
                 content={<ControlPanel />}
                 tapToClose={true}

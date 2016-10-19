@@ -2,12 +2,14 @@ import * as types from './actionTypes';
 import Util from '../commons/utils';
 import Geolocation from 'react-native';
 export let position = (isLocated, isLoading) => {
+    console.log('in here')
     return dispatch => {
         // 获取定位
         dispatch(getGeolocation(isLocated, isLoading));
         return Geolocation.getCurrentPosition(
             (position)=>{
                 var lnglat = position.coords.longitude+","+position.coords.latitude;
+                console.log(lnglat)
                 dispatch(saveGeoloaction(lnglat))
         },(err)=>{
             dispatch(saveGeoloaction(""));

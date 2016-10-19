@@ -5,12 +5,19 @@ import {
     StyleSheet,
     Text,
     Image,
-    View
+    View,
+    InteractionManager
 } from 'react-native';
 import Drawer from 'react-native-drawer';
 import Util from '../commons/utils';
-import HeaderBar from '../commons/HeaderBar'
-import ControlPanel from './ControlPanel'
+import HeaderBar from '../commons/HeaderBar';
+import ControlPanel from './ControlPanel';
+import positoin from  '../actions/PositionAction';
+import AMapLocation from 'react-native-amap-location';
+import TabBar from '../commons/TabBar'
+
+let isLocated = false;
+let isLoading=true;
 
 export default class Today extends Component {
     // 构造
@@ -18,7 +25,9 @@ export default class Today extends Component {
         super(props);
         // 初始状态
         this.state = {
-            canShowLeftPanel: false
+            canShowLeftPanel: false,
+            initialPosition: 'unknown',
+            lastPosition: 'unknown'
         };
     }
 
@@ -29,10 +38,24 @@ export default class Today extends Component {
         this._drawer.open()
     };
 
+    componentDidMount() {
+        this.unlisten = AMapLocation.addEventListener((data) => console.log('result', data));
+        AMapLocation.startLocation({
+            accuracy: 'HighAccuracy',
+            killProcess: true,
+            needDetail: true,
+        });
+    }
+
+    componentWillUnmount() {
+        AMapLocation.stopLocation();
+        this.unlisten();
+    }
+
     render() {
         return (
             <Drawer
-                type="overlay"
+                type="displace"
                 ref={(ref) => this._drawer = ref}
                 content={<ControlPanel />}
                 tapToClose={true}
@@ -70,6 +93,7 @@ class Content extends Component {
                     leftIcon={this.state.leftIcon}
                     leftIconAction={this.props.leftIconAction}
                 />
+                <TabBar/>
             </View>
         );
     }

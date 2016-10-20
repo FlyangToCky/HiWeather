@@ -17,13 +17,18 @@ export default class ControlPanel extends Component {
         this.state = {
         };
     }
-
     render() {
         return (
             <View style={styles.container}>
-                <Icon color='#900' size={30} name='book'/>
+                {/*Head*/}
+                <View style={styles.headView}>
+                    <View style={styles.headViewLeft}></View>
+                    <View style={styles.headViewRight}></View>
+                </View>
+                {/*Middle List*/}
+                {/*Bottom Top Menu*/}
+                {/*Bottom Menu*/}
             </View>
-
         );
     }
 }
@@ -33,6 +38,24 @@ const styles = StyleSheet.create({
         width:Util.size.width*0.8,
         height:Util.size.height,
         backgroundColor:'black',
-        opacity:0.6
+        opacity:0.5
+    },
+    headView:{
+        flexDirection:'row',
+        flexWrap:'wrap',
+        height:40,
+        borderWidth:1,
+        borderColor:'red'
+    },
+    headViewLeft:{
+        flex:1,
+        borderWidth:1,
+        borderColor:'green'
+    },
+    headViewRight:{
+        flex:6,
+        borderWidth:1,
+        borderColor:'black'
     }
+
 });

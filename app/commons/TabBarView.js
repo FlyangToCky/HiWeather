@@ -17,7 +17,7 @@ const tabBarItems = [
     { title: '城市', component: CityContainer,icon: () => <Image style={{ width: 30, height: 30 }} source={require('../assets/imgs/city.png') }/>,iconSel: () => <Image style={{ width: 30, height: 30 }} source={require('../assets/imgs/city_sel.png') }/>,}
 ]
 
-export default class TabBar extends Component {
+export default class TabBarView extends Component {
     // 构造
     constructor(props) {
         super(props);
@@ -26,7 +26,6 @@ export default class TabBar extends Component {
             selectedTab:tabBarItems[0].title
         };
     }
-
     render() {
         return (
             <TabNavigator>

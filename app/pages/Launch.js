@@ -10,7 +10,6 @@ import {
 
 //import TabBarView from '../containers/TabBarView';
 import Main from './Main'
-import Today from  './Today'
 import Util from '../commons/utils';
 
 export default class Launcher extends Component {
@@ -28,7 +27,7 @@ export default class Launcher extends Component {
         setTimeout(()=>{
             //页面切换到Main
             this.props.navigator.replace({ //拿到路由，并替换
-                component:Today
+                component:Main
             });
         },2000);
     }
@@ -42,7 +41,6 @@ export default class Launcher extends Component {
         );
     }
 }
-
 const styles = StyleSheet.create({
     container: {
         flex:1

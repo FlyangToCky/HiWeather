@@ -2,21 +2,11 @@ import React, {
     Component
 } from 'react';
 import {
-    StyleSheet,
-    Text,
-    Image,
-    View
+    StyleSheet
 } from 'react-native';
-
-import TabNavigator from 'react-native-tab-navigator';
-import Util from '../commons/utils';
-import TodayContainer from '../containers/TodayContainer';
-import CityContainer from '../containers/CityContainer';
-
-const tabBarItems = [
-    { title: '今日', component: TodayContainer,icon: () => <Image style={{ width: 30, height: 30 }} source={require('../assets/imgs/today.png') }/>,iconSel: () => <Image style={{ width: 30, height: 30 }} source={require('../assets/imgs/today_sel.png') }/>,},
-    { title: '城市', component: CityContainer,icon: () => <Image style={{ width: 30, height: 30 }} source={require('../assets/imgs/city.png') }/>,iconSel: () => <Image style={{ width: 30, height: 30 }} source={require('../assets/imgs/city_sel.png') }/>,}
-]
+import TabBarView from '../commons/TabBarView';
+import ControlPanel from './ControlPanel';
+import Drawer from 'react-native-drawer';
 
 export default class Main extends Component {
     // 构造
@@ -24,41 +14,38 @@ export default class Main extends Component {
         super(props);
         // 初始状态
         this.state = {
-            selectedTab:tabBarItems[0].title
+
         };
     }
 
+    closeControlPanel = () => {
+        this._drawer.close()
+    };
+    openControlPanel = () => {
+        this._drawer.open()
+    };
+
     render() {
         return (
-            <TabNavigator>
-                {
-                    tabBarItems.map((controller, i) => {
-                        let Component = controller.component;
-                        return (
-                            <TabNavigator.Item
-                                key= {i}
-                                selected={this.state.selectedTab === controller.title}
-                                title={controller.title}
-                                renderIcon={controller.icon}
-                                renderSelectedIcon={controller.iconSel}
-                                onPress={() => this.setState({ selectedTab: controller.title }) }>
-                                <Component navigator = {this.props.navigator} {...this.props}/>
-                            </TabNavigator.Item>
-                        )
-                    })
-                }
-            </TabNavigator >
+            <Drawer
+                type="displace"
+                ref={(ref) => this._drawer = ref}
+                content={<ControlPanel />}
+                tapToClose={true}
+                openDrawerOffset={0.2}
+                panCloseMask={0.2}
+                closedDrawerOffset={-3}
+                styles={drawerStyles}
+                tweenHandler={(ratio) => ({
+                    main: { opacity:(2-ratio)/2 }
+                })}
+            >
+                <TabBarView leftIconAction={this.openControlPanel}/>
+            </Drawer>
         )
     }
-
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1
-    },
-    imgStyle: {
-        width: Util.size.width,
-        height: Util.size.height
-    }
-});
+const drawerStyles = {
+    drawer: {shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 3},
+    main: {paddingLeft: 3}
+}

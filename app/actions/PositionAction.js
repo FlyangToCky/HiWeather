@@ -1,9 +1,16 @@
 import * as types from './actionTypes';
 import Util from '../commons/utils';
-import Geolocation from 'react-native';
+//import AMapLocation from 'react-native-amap-location';
 export let position = (isLocated, isLoading) => {
-    console.log('in here')
     return dispatch => {
+       /* console.log("here");
+        Util.get(Url.getChineseCities,(data)=>{
+            console.log("here");
+            console.log(data);
+        },(err)=>{
+            console.log(err.message);
+        })*/
+
         // 获取定位
         dispatch(getGeolocation(isLocated, isLoading));
         return Geolocation.getCurrentPosition(
@@ -27,7 +34,6 @@ let getGeolocation = (isLocated,isLoading) => {
         type: types.FETCH_GEOLOCATION,
         isLocated: isLocated,
         isLoading:isLoading
-
     }
 }
 

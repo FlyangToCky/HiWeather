@@ -11,8 +11,10 @@ import {
 import Util from '../commons/utils';
 import HeaderBar from '../commons/HeaderBar';
 import positoin from  '../actions/PositionAction';
-//import AMapLocation from 'react-native-amap-location';
-
+import AMapLocation from 'react-native-amap-location';
+import Url from '../commons/interfaces';
+import MainMiddleOne from '../components/Today/MainMiddleOne';
+import MainBottom from '../components/Today/MainBottom'
 let isLocated = false;
 let isLoading=true;
 
@@ -25,13 +27,20 @@ export default class Today extends Component {
             leftIconColor: "#8f4b2e"
         };
     }
-
     componentDidMount() {
-        /*this.listener = AMapLocation.addEventListener((data) => console.log('data', data));
+        console.log("here");
+        Util.get(Url.getWeatherInfo,(data)=>{
+            console.log(data);
+        },(err)=>{
+            console.log(err.message);
+        })
+        /*this.listener = AMapLocation.addEventListener((data) => alert(data.errorInfo));
         AMapLocation.startLocation({
-            accuracy: 'HighAccuracy',
+            accuracy: 'DeviceSensors',
             killProcess: true,
             needDetail: true,
+            mockEnable: true,
+            onceLocation: true
         });*/
     }
 
@@ -49,6 +58,9 @@ export default class Today extends Component {
                     leftIcon={this.state.leftIcon}
                     leftIconAction={this.props.leftIconAction}
                 />
+                <MainMiddleOne/>
+                <MainMiddleOne/>
+                <MainBottom/>
             </View>
         );
     }

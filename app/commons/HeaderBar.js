@@ -56,7 +56,7 @@ export default class HeaderBar extends React.Component {
 
 const styles = StyleSheet.create({
     navigationBarContainer: {
-        marginTop: 10,
+        //marginTop: 10,
         flexDirection: 'row',
         height: 44,
         justifyContent: 'center',

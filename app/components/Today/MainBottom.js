@@ -43,8 +43,8 @@ class MainBottomOne extends Component{
                 <Image style={{width:Util.size.width*0.08,height:Util.size.width*0.08}}
                        source={require('../../assets/imgs/weather_icon_small/warm_ico_snow.png')}>
                 </Image>
-                <Text>22°</Text>
-                <Text style={{color:'#CDCDC1'}}>21°</Text>
+                <Text> 22°</Text>
+                <Text style={{color:'#CDCDC1',textAlign:'center'}}> 21°</Text>
             </View>
         )
     }
@@ -60,6 +60,7 @@ const styles =StyleSheet.create({
     },
     /*每一个*/
     oneWrapper:{
+        justifyContent:'center',
         alignItems:'center'
     }
 });

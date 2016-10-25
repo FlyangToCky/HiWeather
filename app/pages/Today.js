@@ -68,7 +68,8 @@ export default class Today extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1
+        flex: 1,
+        backgroundColor:'white'
     },
     imgStyle: {
         width: Util.size.width,

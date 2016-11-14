@@ -14,7 +14,9 @@ import positoin from  '../actions/PositionAction';
 import AMapLocation from 'react-native-amap-location';
 import Url from '../commons/interfaces';
 import MainMiddleOne from '../components/Today/MainMiddleOne';
-import MainBottom from '../components/Today/MainBottom'
+import MainBottom from '../components/Today/MainBottom';
+import Loading from '../commons/Loading.js'
+
 let isLocated = false;
 let isLoading=true;
 
@@ -52,6 +54,7 @@ export default class Today extends Component {
     render() {
         return (
             <View style={styles.container}>
+                <Loading/>
                 <HeaderBar
                     leftIconColor={this.state.leftIconColor}
                     titleView={this.state.titleName}

@@ -13,6 +13,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import Util from '../commons/utils';
 import LeftTopListOne from '../components/Today/LeftTopListOne';
 import LeftMenuOne from '../components/Today/LeftMenuOne';
+import Test from '../pages/Test.js'
 
 export default class ControlPanel extends Component {
     constructor(props) {
@@ -63,8 +64,8 @@ export default class ControlPanel extends Component {
                 {/*Bottom Middle Menu*/}
                 <MiddleMenu/>
                 {/*Bottom Menu*/}
-                <LeftMenuOne isBlack={true} menuIcon="calendar-check-o" menuTitle="今日"/>
-                <LeftMenuOne menuIcon="bars" menuTitle="我的"/>
+                <LeftMenuOne isBlack={true} menuIcon="calendar-check-o" menuTitle="今日" onPressButton={()=>{this.props.closeDrawer()}}/>
+                <LeftMenuOne menuIcon="bars" menuTitle="位置" onPressButton={()=>{console.log(this.props.navigator)}}/>
                 <LeftMenuOne menuIcon="paper-plane-o" menuTitle="分享"/>
                 <LeftMenuOne menuIcon="ellipsis-h" menuTitle="更多"/>
             </View>

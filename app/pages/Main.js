@@ -30,7 +30,7 @@ export default class Main extends Component {
             <Drawer
                 type="displace"
                 ref={(ref) => this._drawer = ref}
-                content={<ControlPanel />}
+                content={<ControlPanel closeDrawer={this.closeControlPanel}/>}
                 tapToClose={true}
                 openDrawerOffset={0.2}
                 panCloseMask={0.2}

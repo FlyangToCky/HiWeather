@@ -39,3 +39,6 @@ buck-out/
 \.buckd/
 android/app/libs
 android/keystores/debug.keystore
+
+#ºöÂÔ²âÊÔ
+app/pages/Test.js
